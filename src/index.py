@@ -2,12 +2,15 @@ from fastapi import FastAPI
 
 from src.dtos.ISayHelloDto import ISayHelloDto
 
+from src.service.network_util import PythonPing
+
 app = FastAPI()
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    PythonPing.execute()
+    return {"message": "res1 + res2 + res3"}
 
 
 @app.get("/hello/{name}")
