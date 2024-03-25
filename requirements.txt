@@ -5,3 +5,4 @@ uvicorn==0.20.0
 pydantic~=1.10.4
 
 pythonping~=1.1.4
+requests~=2.31.0
