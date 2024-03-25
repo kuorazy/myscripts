@@ -10,12 +10,15 @@ app = FastAPI()
 @app.get("/")
 async def root():
     # PythonPing.execute()
-    ans = PythonPing.execute_http()
-    return {"message": ans}
+    # ans = PythonPing.execute_http()
+
+    return {"message": "ans"}
 
 
 @app.get("/hello/{name}")
 async def say_hello(name: str):
+    if name == "fangshua":
+        PythonPing.execute_send_message()
     return {"message": f"Hello {name}"}
 
 

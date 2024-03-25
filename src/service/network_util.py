@@ -2,6 +2,10 @@ import platform  # For getting the operating system name
 import subprocess  # For executing a shell command
 from pythonping import ping
 import requests
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
 
 class PythonPing:
     @staticmethod
@@ -39,3 +43,30 @@ class PythonPing:
         print('url:', res.request.url)  # 查看发送的url
         print("response:", res.text)  # 返回请求结果
         return res.text
+
+    @staticmethod
+    def execute_send_message():
+        # 邮件内容
+        subject = '邮件主题'
+        body = '邮件正文'
+
+        # 构建邮件
+        msg = MIMEText(body, 'plain', 'utf-8')
+        msg['Subject'] = Header(subject, 'utf-8')
+        msg['From'] = '1781929950@qq.com'
+        msg['To'] = '737001160@qq.com'
+
+        # 发送邮件
+        smtp_server = 'smtp.qq.com'
+        smtp_port = 587
+        sender_email = '1781929950@qq.com'
+        password = 'gwsflkjjvjnzehea'  # 在QQ邮箱设置里拿到的码
+
+        try:
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls()
+                server.login(sender_email, password)
+                server.sendmail(sender_email, [msg['To']], msg.as_string())
+            print('邮件发送成功')
+        except smtplib.SMTPException as e:
+            print('邮件发送失败:', str(e))
