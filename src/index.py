@@ -9,7 +9,8 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    PythonPing.execute()
+    # PythonPing.execute()
+    PythonPing.execute_native()
     return {"message": "res1 + res2 + res3"}
 
 
