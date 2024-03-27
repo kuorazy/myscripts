@@ -45,7 +45,8 @@ class PythonPing:
         return res.text
 
     @staticmethod
-    def execute_send_message():
+    def execute_send_message(password):
+        # 在QQ邮箱设置里拿到的码
         # 邮件内容
         subject = '邮件主题'
         body = '邮件正文'
@@ -60,7 +61,6 @@ class PythonPing:
         smtp_server = 'smtp.qq.com'
         smtp_port = 587
         sender_email = '1781929950@qq.com'
-        password = 'gwsflkjjvjnzehea'  # 在QQ邮箱设置里拿到的码
 
         try:
             with smtplib.SMTP(smtp_server, smtp_port) as server:

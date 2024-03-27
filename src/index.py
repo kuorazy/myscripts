@@ -15,11 +15,10 @@ async def root():
     return {"message": "ans"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    if name == "fangshua":
-        PythonPing.execute_send_message()
-    return {"message": f"Hello {name}"}
+@app.get("/hello/{password}")
+async def say_hello(password: str):
+    PythonPing.execute_send_message(password)
+    return {"message": f"Hello {password}"}
 
 
 @app.post("/hello")
